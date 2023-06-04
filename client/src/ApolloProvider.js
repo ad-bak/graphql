@@ -3,8 +3,7 @@ import App from "./App";
 import {
   ApolloClient,
   InMemoryCache,
-  ApolloProvider,
-  gql,
+  ApolloProvider as BaseApolloProvider,
 } from "@apollo/client";
 
 const client = new ApolloClient({
@@ -12,8 +11,10 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-export default (
-  <ApolloProvider client={client}>
+const ApolloProviderWrapper = () => (
+  <BaseApolloProvider client={client}>
     <App />
-  </ApolloProvider>
+  </BaseApolloProvider>
 );
+
+export default ApolloProviderWrapper;
